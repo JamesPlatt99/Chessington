@@ -20,7 +20,7 @@ namespace Chessington.GameEngine
 
         public Board(Player currentPlayer, Piece[,] boardState = null)
         {
-            board = boardState ?? new Piece[GameSettings.BoardSize, GameSettings.BoardSize]; 
+            board = boardState ?? new Piece[GameSettings.BoardSize, GameSettings.BoardSize];
             CurrentPlayer = currentPlayer;
             CapturedPieces = new List<Piece>();
         }
@@ -28,19 +28,27 @@ namespace Chessington.GameEngine
         public void AddPiece(Square square, Piece pawn)
         {
             board[square.Row, square.Col] = pawn;
-            
+
         }
 
         public Piece FindPosition(int row, int col)
         {
-            return board[row, col];
+            try
+            {
+                return board[row, col];
+            }
+            catch (Exception )
+            {
+                return null;
+            }
+
         }
-    
+
         public Piece GetPiece(Square square)
         {
             return board[square.Row, square.Col];
         }
-        
+
         public Square FindPiece(Piece piece)
         {
             for (var row = 0; row < GameSettings.BoardSize; row++)
@@ -54,8 +62,8 @@ namespace Chessington.GameEngine
         public void MovePiece(Square from, Square to)
         {
             var movingPiece = board[from.Row, from.Col];
-            
-            
+
+
             if (movingPiece == null) { return; }
 
             if (movingPiece.Player != CurrentPlayer)
@@ -77,9 +85,9 @@ namespace Chessington.GameEngine
             CurrentPlayer = movingPiece.Player == Player.White ? Player.Black : Player.White;
             OnCurrentPlayerChanged(CurrentPlayer);
         }
-        
+
         public delegate void PieceCapturedEventHandler(Piece piece);
-        
+
         public event PieceCapturedEventHandler PieceCaptured;
 
         protected virtual void OnPieceCaptured(Piece piece)

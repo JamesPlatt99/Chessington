@@ -6,7 +6,7 @@ namespace Chessington.GameEngine.Pieces
 {
     public class Pawn : Piece
     {
-        public Pawn(Player player) 
+        public Pawn(Player player)
             : base(player) { }
 
         public Square Position { get; set; }
@@ -17,18 +17,26 @@ namespace Chessington.GameEngine.Pieces
             switch (Player)
             {
                 case Player.Black:
-                    availableMoves.Add(new Square(currentSquare.Row+1,currentSquare.Col));
-                    if (FirstMove)
+                    if (board.FindPosition(currentSquare.Row + 1, currentSquare.Col) == null)
                     {
-                        availableMoves.Add(new Square(currentSquare.Row + 2, currentSquare.Col));
+                        availableMoves = AddMove(new Square(currentSquare.Row + 1, currentSquare.Col), availableMoves, board);
+
+                        if (FirstMove && board.FindPosition(currentSquare.Row + 2, currentSquare.Col) == null)
+                        {
+                            availableMoves = AddMove(new Square(currentSquare.Row + 2, currentSquare.Col), availableMoves, board);
+                        }
                     }
                     break;
                 case Player.White:
-                    availableMoves.Add(new Square(currentSquare.Row-1,currentSquare.Col));
-                    if (FirstMove)
+                    if (board.FindPosition(currentSquare.Row - 1, currentSquare.Col) == null)
                     {
-                        availableMoves.Add(new Square(currentSquare.Row - 2, currentSquare.Col));
+                        availableMoves = AddMove(new Square(currentSquare.Row - 1, currentSquare.Col), availableMoves, board);
+                        if (FirstMove && board.FindPosition(currentSquare.Row - 2, currentSquare.Col) == null)
+                        {
+                            availableMoves = AddMove(new Square(currentSquare.Row - 2, currentSquare.Col), availableMoves, board);
+                        }
                     }
+
                     break;
             }
 
