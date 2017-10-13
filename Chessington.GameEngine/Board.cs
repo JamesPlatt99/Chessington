@@ -24,6 +24,11 @@ namespace Chessington.GameEngine
             CapturedPieces = new List<Piece>();
         }
 
+        public Piece GetPosition(int row, int col)
+        {
+            return board[row, col];
+        }
+
         public void AddPiece(Square square, Piece pawn)
         {
             board[square.Row, square.Col] = pawn;

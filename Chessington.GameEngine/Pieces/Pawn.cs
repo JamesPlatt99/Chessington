@@ -17,17 +17,32 @@ namespace Chessington.GameEngine.Pieces
             switch (Player)
             {
                 case Player.Black:
-                    availableMoves.Add(new Square(currentSquare.Row+1,currentSquare.Col));
+                    if (board.GetPosition(currentSquare.Row + 1, currentSquare.Col) == null)
+                    {
+                        AddMove(new Square(currentSquare.Row + 1, currentSquare.Col),availableMoves);
+                    }
+
+                   
                     if (FirstMove)
                     {
-                        availableMoves.Add(new Square(currentSquare.Row + 2, currentSquare.Col));
+                        if (board.GetPosition(currentSquare.Row + 1, currentSquare.Col) == null && board.GetPosition(currentSquare.Row + 2, currentSquare.Col) == null)
+                        {
+                            AddMove(new Square(currentSquare.Row + 2, currentSquare.Col),availableMoves);
+                        }
                     }
                     break;
                 case Player.White:
-                    availableMoves.Add(new Square(currentSquare.Row-1,currentSquare.Col));
+                    if (board.GetPosition(currentSquare.Row -1, currentSquare.Col) == null)
+                    {
+                        AddMove(new Square(currentSquare.Row - 1, currentSquare.Col),availableMoves);
+                    }
+                   
                     if (FirstMove)
                     {
-                        availableMoves.Add(new Square(currentSquare.Row - 2, currentSquare.Col));
+                        if (board.GetPosition(currentSquare.Row - 1, currentSquare.Col) == null && board.GetPosition(currentSquare.Row - 2, currentSquare.Col) == null)
+                        {
+                            AddMove(new Square(currentSquare.Row - 2, currentSquare.Col),availableMoves);
+                        }
                     }
                     break;
             }
