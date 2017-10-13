@@ -7,12 +7,15 @@ namespace Chessington.GameEngine
 {
     public class Board
     {
+        public static int BoardSize = 8;
         private readonly Piece[,] board;
         public Player CurrentPlayer { get; private set; }
-        public IList<Piece> CapturedPieces { get; private set; } 
+        public IList<Piece> CapturedPieces { get; private set; }
 
         public Board()
-            : this(Player.White) { }
+            : this(Player.White)
+        {
+        }
 
         public Board(Player currentPlayer, Piece[,] boardState = null)
         {
