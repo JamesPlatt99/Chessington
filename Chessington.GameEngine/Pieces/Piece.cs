@@ -12,7 +12,7 @@ namespace Chessington.GameEngine.Pieces
             Player = player;
         }
 
-        protected Boolean GetNextPlayer(Square position,Board board)
+        protected Boolean GetNextPlayer(Square position, Board board)
         {
             Player otherPlayer = board.FindPosition(position.Row, position.Col).Player;
             if (this.Player != otherPlayer)
@@ -29,45 +29,49 @@ namespace Chessington.GameEngine.Pieces
 
             while (newPosition.Row < Board.Size && newPosition.Col < Board.Size && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
+                newPosition = MoveRightForward(newPosition);
                 if (newPosition != currentSquare)
                 {
-                    availableMoves.Add(newPosition);
+                    availableMoves = AddMove(newPosition, availableMoves, board);
 
                 }
-                newPosition = MoveRightForward(newPosition);
+
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
             while (newPosition.Row < Board.Size && newPosition.Col >= 0 && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
+                newPosition = MoveLeftForward(newPosition);
                 if (newPosition != currentSquare)
                 {
-                    availableMoves.Add(newPosition);
+                    availableMoves = AddMove(newPosition, availableMoves, board);
 
                 }
-                newPosition = MoveLeftForward(newPosition);
+
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
             while (newPosition.Row >= 0 && newPosition.Col >= 0 && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
+                newPosition = MoveLeftBackward(newPosition);
                 if (newPosition != currentSquare)
                 {
-                    availableMoves.Add(newPosition);
+                    availableMoves = AddMove(newPosition, availableMoves, board);
 
                 }
-                newPosition = MoveLeftBackward(newPosition);
+
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
             while (newPosition.Row >= 0 && newPosition.Col < Board.Size && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
+                newPosition = MoveRightBackward(newPosition);
                 if (newPosition != currentSquare)
                 {
-                    availableMoves.Add(newPosition);
+                    availableMoves = AddMove(newPosition, availableMoves, board);
 
                 }
-                newPosition = MoveRightBackward(newPosition);
+
 
             }
 
@@ -80,7 +84,7 @@ namespace Chessington.GameEngine.Pieces
             var currentSquare = board.FindPiece(this);
             Square newPosition = new Square(currentSquare.Row, currentSquare.Col);
 
-            while (newPosition.Row < Board.Size -1 && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare)) 
+            while (newPosition.Row < Board.Size - 1 && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
                 newPosition = MoveForward(newPosition);
                 if (newPosition != currentSquare)
@@ -89,7 +93,7 @@ namespace Chessington.GameEngine.Pieces
                 }
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Row >0 && board.FindPosition(newPosition.Row,newPosition.Col) == null | newPosition == currentSquare)
+            while (newPosition.Row > 0 && board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare)
             {
                 newPosition = MoveBackward(newPosition); if (newPosition != currentSquare)
                 {
@@ -97,9 +101,9 @@ namespace Chessington.GameEngine.Pieces
                 }
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Col < Board.Size -1 && board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare)
+            while (newPosition.Col < Board.Size - 1 && board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare)
             {
-                
+
                 newPosition = MoveRight(newPosition);
                 if (newPosition != currentSquare)
                 {
@@ -107,7 +111,7 @@ namespace Chessington.GameEngine.Pieces
                 }
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Col >0 && board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare)
+            while (newPosition.Col > 0 && board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare)
             {
                 newPosition = MoveLeft(newPosition);
                 if (newPosition != currentSquare)
@@ -120,7 +124,7 @@ namespace Chessington.GameEngine.Pieces
 
         protected Square MoveForward(Square newPosition)
         {
-            return new Square(newPosition.Row +1, newPosition.Col);
+            return new Square(newPosition.Row + 1, newPosition.Col);
         }
         protected Square MoveBackward(Square newPosition)
         {
@@ -128,11 +132,11 @@ namespace Chessington.GameEngine.Pieces
         }
         protected Square MoveLeft(Square newPosition)
         {
-            return new Square(newPosition.Row, newPosition.Col-1);
+            return new Square(newPosition.Row, newPosition.Col - 1);
         }
         protected Square MoveRight(Square newPosition)
         {
-            return new Square(newPosition.Row, newPosition.Col+1);
+            return new Square(newPosition.Row, newPosition.Col + 1);
         }
         public Square MoveLeftForward(Square newPosition)
         {
@@ -159,16 +163,16 @@ namespace Chessington.GameEngine.Pieces
             return newestPosition;
         }
 
-        public List<Square> AddMove(Square move, List<Square> availableMoves,Board board)
+        public List<Square> AddMove(Square move, List<Square> availableMoves, Board board)
         {
-            if (ValidMove(move,board))
+            if (ValidMove(move, board))
             {
                 availableMoves.Add(move);
             }
             return availableMoves;
         }
 
-        public Boolean ValidMove(Square move,Board board)
+        public Boolean ValidMove(Square move, Board board)
         {
             if (move.Row >= Board.Size | move.Row < 0 | move.Col >= Board.Size | move.Col < 0)
             {

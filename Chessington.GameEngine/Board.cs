@@ -72,7 +72,7 @@ namespace Chessington.GameEngine
             }
 
             //If the space we're moving to is occupied, we need to mark it as captured.
-            if (board[to.Row, to.Col] != null && FindPosition(to.Row, to.Col).Player != FindPosition(from.Row, from.Col).Player)
+            if (board[to.Row, to.Col] != null)
             {
                 OnPieceCaptured(board[to.Row, to.Col]);
             }
