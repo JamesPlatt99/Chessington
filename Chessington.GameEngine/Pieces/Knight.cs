@@ -12,38 +12,15 @@ namespace Chessington.GameEngine.Pieces
         {
             List<Square> availableMoves = new List<Square>();
             var currentSquare = board.FindPiece(this);
-            if (currentSquare.Row + 2 < Board.BoardSize && currentSquare.Col - 1 >= 0)
-            {
-                availableMoves.Add(new Square(currentSquare.Row + 2, currentSquare.Col - 1));
-            }
-            if (currentSquare.Row + 2 < Board.BoardSize && currentSquare.Col + 1 < Board.BoardSize)
-            {
-                availableMoves.Add(new Square(currentSquare.Row + 2, currentSquare.Col + 1));
-            }
-            if (currentSquare.Row - 2 >= 0 && currentSquare.Col - 1 >= 0)
-            {
-                availableMoves.Add(new Square(currentSquare.Row - 2, currentSquare.Col - 1));
-            }
-            if (currentSquare.Row - 2 >= 0 && currentSquare.Col + 1 < Board.BoardSize)
-            {
-                availableMoves.Add(new Square(currentSquare.Row - 2, currentSquare.Col + 1));
-            }
-            if (currentSquare.Row + 1 < Board.BoardSize && currentSquare.Col - 2 >= 0)
-            {
-                availableMoves.Add(new Square(currentSquare.Row + 1, currentSquare.Col - 2));
-            }
-            if (currentSquare.Row - 1 >= 0 && currentSquare.Col - 2 >= 0)
-            {
-                availableMoves.Add(new Square(currentSquare.Row - 1, currentSquare.Col - 2));
-            }
-            if (currentSquare.Row - 1 >= 0 && currentSquare.Col + 2 < Board.BoardSize)
-            {
-                availableMoves.Add(new Square(currentSquare.Row - 1, currentSquare.Col + 2));
-            }
-            if (currentSquare.Row + 1 < Board.BoardSize && currentSquare.Col + 2 < Board.BoardSize)
-            {
-                availableMoves.Add(new Square(currentSquare.Row + 1, currentSquare.Col + 2));
-            }
+            
+                AddMove(new Square(currentSquare.Row + 2, currentSquare.Col - 1),availableMoves);
+                AddMove(new Square(currentSquare.Row + 2, currentSquare.Col + 1), availableMoves);
+                AddMove(new Square(currentSquare.Row - 2, currentSquare.Col - 1), availableMoves);
+                AddMove(new Square(currentSquare.Row - 2, currentSquare.Col + 1), availableMoves);
+                AddMove(new Square(currentSquare.Row + 1, currentSquare.Col - 2), availableMoves);
+                AddMove(new Square(currentSquare.Row - 1, currentSquare.Col - 2), availableMoves);
+                AddMove(new Square(currentSquare.Row - 1, currentSquare.Col + 2), availableMoves);
+                AddMove(new Square(currentSquare.Row + 1, currentSquare.Col + 2), availableMoves);
             return availableMoves;
 
         }

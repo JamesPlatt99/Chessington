@@ -18,7 +18,7 @@ namespace Chessington.GameEngine.Pieces
             var currentSquare = board.FindPiece(this);
             Square newPosition = new Square(currentSquare.Row, currentSquare.Col);
 
-            while (newPosition.Row < Board.BoardSize && newPosition.Col < Board.BoardSize)
+            while (newPosition.Row < Board.Size && newPosition.Col < Board.Size)
             {
                 if (newPosition != currentSquare)
                 {
@@ -29,7 +29,7 @@ namespace Chessington.GameEngine.Pieces
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Row < Board.BoardSize && newPosition.Col >= 0)
+            while (newPosition.Row < Board.Size && newPosition.Col >= 0)
             {
                 if (newPosition != currentSquare)
                 {
@@ -51,7 +51,7 @@ namespace Chessington.GameEngine.Pieces
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Row >= 0 && newPosition.Col < Board.BoardSize)
+            while (newPosition.Row >= 0 && newPosition.Col < Board.Size)
             {
                 if (newPosition != currentSquare)
                 {
@@ -69,7 +69,7 @@ namespace Chessington.GameEngine.Pieces
         {
             List<Square> availableMoves = new List<Square>();
             var currentSquare = board.FindPiece(this);
-            for (int i = 0; i < Board.BoardSize; i++)
+            for (int i = 0; i < Board.Size; i++)
             {
                 Square curMove = new Square(currentSquare.Row, i);
                 availableMoves.Add(curMove);
@@ -102,6 +102,24 @@ namespace Chessington.GameEngine.Pieces
             Square newestPosition = new Square(newPosition.Row - 1, newPosition.Col + 1);
 
             return newestPosition;
+        }
+
+        public List<Square> AddMove(Square move, List<Square> availableMoves)
+        {
+            if (ValidMove(move))
+            {
+                availableMoves.Add(move);
+            }
+            return availableMoves;
+        }
+
+        public Boolean ValidMove(Square move)
+        {
+            if (move.Row >= Board.Size | move.Row < 0 | move.Col >= Board.Size | move.Col < 0)
+            {
+                return false;
+            }
+            return true;
         }
 
 

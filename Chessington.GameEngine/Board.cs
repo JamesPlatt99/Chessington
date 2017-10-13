@@ -7,7 +7,7 @@ namespace Chessington.GameEngine
 {
     public class Board
     {
-        public static int BoardSize = 8;
+        public static int Size = 8;
         private readonly Piece[,] board;
         public Player CurrentPlayer { get; private set; }
         public IList<Piece> CapturedPieces { get; private set; }
