@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Chessington.GameEngine.Pieces;
 
 namespace Chessington.GameEngine
@@ -28,6 +29,11 @@ namespace Chessington.GameEngine
         {
             board[square.Row, square.Col] = pawn;
             
+        }
+
+        public Piece FindPosition(int row, int col)
+        {
+            return board[row, col];
         }
     
         public Piece GetPiece(Square square)

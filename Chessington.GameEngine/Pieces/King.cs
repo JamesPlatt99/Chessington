@@ -12,14 +12,14 @@ namespace Chessington.GameEngine.Pieces
         {
             List<Square> availableMoves = new List<Square>();
             var currentSquare = board.FindPiece(this);
-            AddMove(MoveLeftBackward(currentSquare), availableMoves);
-            AddMove(MoveLeftForward(currentSquare), availableMoves);
-            AddMove(MoveRightBackward(currentSquare), availableMoves);
-            AddMove(MoveRightForward(currentSquare), availableMoves);
-            AddMove(new Square(currentSquare.Row + 1, currentSquare.Col), availableMoves);
-            AddMove(new Square(currentSquare.Row - 1, currentSquare.Col), availableMoves);
-            AddMove(new Square(currentSquare.Row, currentSquare.Col + 1), availableMoves);
-            AddMove(new Square(currentSquare.Row, currentSquare.Col - 1), availableMoves);
+            AddMove(MoveLeftBackward(currentSquare), availableMoves,board);
+            AddMove(MoveLeftForward(currentSquare), availableMoves, board);
+            AddMove(MoveRightBackward(currentSquare), availableMoves, board);
+            AddMove(MoveRightForward(currentSquare), availableMoves, board);
+            AddMove(new Square(currentSquare.Row + 1, currentSquare.Col), availableMoves, board);
+            AddMove(new Square(currentSquare.Row - 1, currentSquare.Col), availableMoves, board);
+            AddMove(new Square(currentSquare.Row, currentSquare.Col + 1), availableMoves, board);
+            AddMove(new Square(currentSquare.Row, currentSquare.Col - 1), availableMoves, board);
             return availableMoves;
         }
     }
