@@ -27,7 +27,7 @@ namespace Chessington.GameEngine.Pieces
             var currentSquare = board.FindPiece(this);
             Square newPosition = new Square(currentSquare.Row, currentSquare.Col);
 
-            while (newPosition.Row < Board.Size && newPosition.Col < Board.Size)
+            while (newPosition.Row < Board.Size && newPosition.Col < Board.Size && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
                 if (newPosition != currentSquare)
                 {
@@ -38,7 +38,7 @@ namespace Chessington.GameEngine.Pieces
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Row < Board.Size && newPosition.Col >= 0)
+            while (newPosition.Row < Board.Size && newPosition.Col >= 0 && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
                 if (newPosition != currentSquare)
                 {
@@ -49,7 +49,7 @@ namespace Chessington.GameEngine.Pieces
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Row >= 0 && newPosition.Col >= 0)
+            while (newPosition.Row >= 0 && newPosition.Col >= 0 && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
                 if (newPosition != currentSquare)
                 {
@@ -60,7 +60,7 @@ namespace Chessington.GameEngine.Pieces
 
             }
             newPosition = new Square(currentSquare.Row, currentSquare.Col);
-            while (newPosition.Row >= 0 && newPosition.Col < Board.Size)
+            while (newPosition.Row >= 0 && newPosition.Col < Board.Size && (board.FindPosition(newPosition.Row, newPosition.Col) == null | newPosition == currentSquare))
             {
                 if (newPosition != currentSquare)
                 {
