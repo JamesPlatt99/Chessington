@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Chessington.GameEngine.Pieces
@@ -17,9 +18,17 @@ namespace Chessington.GameEngine.Pieces
             {
                 case Player.Black:
                     availableMoves.Add(new Square(currentSquare.Row+1,currentSquare.Col));
+                    if (FirstMove)
+                    {
+                        availableMoves.Add(new Square(currentSquare.Row + 2, currentSquare.Col));
+                    }
                     break;
                 case Player.White:
                     availableMoves.Add(new Square(currentSquare.Row-1,currentSquare.Col));
+                    if (FirstMove)
+                    {
+                        availableMoves.Add(new Square(currentSquare.Row - 2, currentSquare.Col));
+                    }
                     break;
             }
 
