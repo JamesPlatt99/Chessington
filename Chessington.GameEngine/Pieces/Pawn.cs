@@ -19,27 +19,52 @@ namespace Chessington.GameEngine.Pieces
                 case Player.Black:
                     if (board.FindPosition(currentSquare.Row + 1, currentSquare.Col) == null)
                     {
-                        availableMoves = AddMove(new Square(currentSquare.Row + 1, currentSquare.Col), availableMoves, board);
+                        availableMoves = AddMove(new Square(currentSquare.Row + 1, currentSquare.Col), availableMoves,
+                            board);
 
                         if (FirstMove && board.FindPosition(currentSquare.Row + 2, currentSquare.Col) == null)
                         {
-                            availableMoves = AddMove(new Square(currentSquare.Row + 2, currentSquare.Col), availableMoves, board);
+                            availableMoves = AddMove(new Square(currentSquare.Row + 2, currentSquare.Col),
+                                availableMoves, board);
                         }
                     }
+
+                    if (board.FindPosition(currentSquare.Row + 1, currentSquare.Col + 1) != null && board.FindPosition(currentSquare.Row + 1, currentSquare.Col + 1).Player == Player.White)
+                    {
+                        availableMoves = AddMove(new Square(currentSquare.Row + 1, currentSquare.Col + 1), availableMoves, board);
+                    }
+                    if (board.FindPosition(currentSquare.Row + 1, currentSquare.Col - 1) != null && board.FindPosition(currentSquare.Row + 1, currentSquare.Col - 1).Player == Player.White)
+                    {
+                        availableMoves = AddMove(new Square(currentSquare.Row + 1, currentSquare.Col - 1), availableMoves, board);
+                    }
+
                     break;
                 case Player.White:
                     if (board.FindPosition(currentSquare.Row - 1, currentSquare.Col) == null)
                     {
-                        availableMoves = AddMove(new Square(currentSquare.Row - 1, currentSquare.Col), availableMoves, board);
+                        availableMoves = AddMove(new Square(currentSquare.Row - 1, currentSquare.Col), availableMoves,
+                            board);
                         if (FirstMove && board.FindPosition(currentSquare.Row - 2, currentSquare.Col) == null)
                         {
-                            availableMoves = AddMove(new Square(currentSquare.Row - 2, currentSquare.Col), availableMoves, board);
+                            availableMoves = AddMove(new Square(currentSquare.Row - 2, currentSquare.Col),
+                                availableMoves, board);
                         }
                     }
 
+                    if (board.FindPosition(currentSquare.Row - 1, currentSquare.Col + 1) != null && board.FindPosition(currentSquare.Row - 1, currentSquare.Col + 1).Player == Player.Black)
+                    {
+                        availableMoves = AddMove(new Square(currentSquare.Row - 1, currentSquare.Col + 1), availableMoves, board);
+                    }
+                    if (board.FindPosition(currentSquare.Row - 1, currentSquare.Col - 1) != null && board.FindPosition(currentSquare.Row - 1, currentSquare.Col - 1).Player == Player.Black)
+                    {
+                        availableMoves = AddMove(new Square(currentSquare.Row - 1, currentSquare.Col - 1), availableMoves, board);
+                    }
+
+
+                    
                     break;
             }
-
+            
             return availableMoves;
         }
     }
