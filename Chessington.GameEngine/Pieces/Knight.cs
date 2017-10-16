@@ -13,14 +13,14 @@ namespace Chessington.GameEngine.Pieces
             List<Square> availableMoves = new List<Square>();
             var currentSquare = board.FindPiece(this);
             
-                AddMove(new Square(currentSquare.Row + 2, currentSquare.Col - 1),availableMoves);
-                AddMove(new Square(currentSquare.Row + 2, currentSquare.Col + 1), availableMoves);
-                AddMove(new Square(currentSquare.Row - 2, currentSquare.Col - 1), availableMoves);
-                AddMove(new Square(currentSquare.Row - 2, currentSquare.Col + 1), availableMoves);
-                AddMove(new Square(currentSquare.Row + 1, currentSquare.Col - 2), availableMoves);
-                AddMove(new Square(currentSquare.Row - 1, currentSquare.Col - 2), availableMoves);
-                AddMove(new Square(currentSquare.Row - 1, currentSquare.Col + 2), availableMoves);
-                AddMove(new Square(currentSquare.Row + 1, currentSquare.Col + 2), availableMoves);
+                AddMove(new Square(currentSquare.Row + 2, currentSquare.Col - 1),availableMoves, board);
+                AddMove(new Square(currentSquare.Row + 2, currentSquare.Col + 1), availableMoves, board);
+                AddMove(new Square(currentSquare.Row - 2, currentSquare.Col - 1), availableMoves, board);
+                AddMove(new Square(currentSquare.Row - 2, currentSquare.Col + 1), availableMoves, board);
+                AddMove(new Square(currentSquare.Row + 1, currentSquare.Col - 2), availableMoves, board);
+                AddMove(new Square(currentSquare.Row - 1, currentSquare.Col - 2), availableMoves, board);
+                AddMove(new Square(currentSquare.Row - 1, currentSquare.Col + 2), availableMoves, board);
+                AddMove(new Square(currentSquare.Row + 1, currentSquare.Col + 2), availableMoves, board);
             return availableMoves;
 
         }
